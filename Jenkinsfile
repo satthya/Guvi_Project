@@ -11,6 +11,7 @@ pipeline{
                         sh "bash build.sh"
                         // Push Docker image to dev repo
                         withCredentials([usernamePassword(credentialsId:"Docker",passwordVariable:"dockerhubpass",usernameVariable:"dockerhubuser")]){
+			    // Sanitize the Docker Hub username to replace '@' or '.' with '_'
                             def sanitizedUsername = env.dockerhubuser.replaceAll('[^a-zA-Z0-9_-]', '_')
 			    sh "docker tag react_application:latest ${env.dockerhubuser}/dev:latest"
 			    sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
@@ -22,7 +23,8 @@ pipeline{
                         sh "bash build.sh"
                         // Push Docker image to prod repo
                         withCredentials([usernamePassword(credentialsId:"Docker",passwordVariable:"dockerhubpass",usernameVariable:"dockerhubuser")]){
-                            def sanitizedUsername = env.dockerhubuser.replaceAll('[^a-zA-Z0-9_-]', '_')
+                            // Sanitize the Docker Hub username to replace '@' or '.' with '_'
+			    def sanitizedUsername = env.dockerhubuser.replaceAll('[^a-zA-Z0-9_-]', '_')
 			    sh "docker tag react_application:latest ${env.dockerhubuser}/prod:latest"
 			    sh "docker login -u ${env.dockerhubuser} -p ${env.dockerhubpass}"
 			    sh "docker push ${env.dockerhubuser}/prod:latest"}
