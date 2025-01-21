@@ -22,10 +22,10 @@ pipeline {
                         // Push Docker image to dev repo
                         withCredentials([usernamePassword(
                             credentialsId: 'DOCKER',  // Jenkins credentials ID
-                            usernameVariable: 'Username',
-                            passwordVariable: 'Password'
+                            usernameVariable: 'DOCKER_USERNAME',
+                            passwordVariable: 'DOCKER_PASSWORD'
                         )]) {
-                            sh 'echo "Password" | docker login -u "Username" --password-stdin'
+                            sh 'echo "DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin'
                             sh "docker push ${DOCKER_IMAGE_dev}-dev:latest"
                         }
                     } else if (env.GIT_BRANCH == 'origin/main') {
@@ -39,10 +39,10 @@ pipeline {
                         // Push Docker image to prod repo
                         withCredentials([usernamePassword(
                             credentialsId: 'DOCKER',  // Jenkins credentials ID
-                            usernameVariable: 'Username',
-                            passwordVariable: 'Password'
+                            usernameVariable: 'DOCKER_USERNAME',
+                            passwordVariable: 'DOCKER_PASSWORD'
                         )]) {
-                            sh 'echo "Password" | docker login -u "Username" --password-stdin'
+                            sh 'echo "DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin'
                             sh "docker push ${DOCKER_IMAGE_prod}-prod:latest"
                         }
                     }
