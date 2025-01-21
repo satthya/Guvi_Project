@@ -11,7 +11,7 @@ pipeline {
         stage('Build and Push') {
             steps {
                 script {
-                    if (env.GIT_BRANCH == 'origin/dev') {
+                    if (env.GIT_BRANCH == 'dev') {
                         // Clone the repository for the 'dev' branch
                         git url: 'https://github.com/satthya/Guvi_Project.git', branch: 'dev'
                         
@@ -28,7 +28,7 @@ pipeline {
                             sh 'docker login -u $Username --password-stdin <<< $Password''
                             sh "docker push ${DOCKER_IMAGE_dev}-dev:latest"
                         }
-                    } else if (env.GIT_BRANCH == 'origin/main') {
+                    } else if (env.GIT_BRANCH == 'main') {
                         // Clone the repository for the 'main' branch
                         git url: 'https://github.com/satthya/Guvi_Project.git', branch: 'main'
                         
