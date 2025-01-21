@@ -25,7 +25,7 @@ pipeline {
                             usernameVariable: 'DOCKER_USERNAME',
                             passwordVariable: 'DOCKER_PASSWORD'
                         )]) {
-                            sh 'echo "DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin'
+                            sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
                             sh "docker push ${DOCKER_IMAGE_dev}-dev:latest"
                         }
                     } else if (env.GIT_BRANCH == 'origin/main') {
@@ -42,7 +42,7 @@ pipeline {
                             usernameVariable: 'DOCKER_USERNAME',
                             passwordVariable: 'DOCKER_PASSWORD'
                         )]) {
-                            sh 'echo "DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin'
+                            sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
                             sh "docker push ${DOCKER_IMAGE_prod}-prod:latest"
                         }
                     }
