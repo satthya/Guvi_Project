@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_dev = 'satthya04/dev:latest'  // Replace with your Docker image name
-	DOCKER_IMAGE_prod = 'satthya04/prod:latest'  // Replace with your Docker image name 
+        DOCKER_IMAGE_dev = 'satthya04/dev'  // Replace with your Docker image name
+	DOCKER_IMAGE_prod = 'satthya04/prod'  // Replace with your Docker image name 
         DOCKER_REGISTRY = 'docker.io'  // Docker Hub registry
     }
 
