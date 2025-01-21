@@ -21,7 +21,7 @@ pipeline {
                         
                         // Push Docker image to dev repo
                         withCredentials([usernamePassword(
-                            credentialsId: 'Docker',  // Jenkins credentials ID
+                            credentialsId: 'DOCKER',  // Jenkins credentials ID
                             usernameVariable: 'Username',
                             passwordVariable: 'Password'
                         )]) {
