@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_dev = 'satthya04/dev:latest'  // Replace with your Docker image name
-	DOCKER_IMAGE_prod = 'satthya04/dev:latest'  // Replace with your Docker image name 
+	DOCKER_IMAGE_prod = 'satthya04/prod:latest'  // Replace with your Docker image name 
         DOCKER_REGISTRY = 'docker.io'  // Docker Hub registry
     }
 
