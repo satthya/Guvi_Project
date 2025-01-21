@@ -30,7 +30,7 @@ pipeline {
                         }
                     } else if (env.GIT_BRANCH == 'origin/main') {
                         // Clone the repository for the 'main' branch
-                        git url: 'https://github.com/satthya/Guvi_Project.git', branch: 'master'
+                        git url: 'https://github.com/satthya/Guvi_Project.git', branch: 'main'
                         
                         // Build Docker image
                         sh 'chmod 777 build.sh'
