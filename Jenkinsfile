@@ -18,6 +18,9 @@ pipeline {
                         // Build Docker image
                         sh 'chmod 777 build.sh'
                         sh 'bash build.sh'
+
+			// Tag the built image with dev tag
+                        sh "docker tag react_application:latest ${DOCKER_IMAGE_dev}"
                         
                         // Push Docker image to dev repo
                         withCredentials([usernamePassword(
@@ -35,7 +38,10 @@ pipeline {
                         // Build Docker image
                         sh 'chmod 777 build.sh'
                         sh 'bash build.sh'
-                        
+			    
+			// Tag the built image with prod tag
+                        sh "docker tag react_application:latest ${DOCKER_IMAGE_prod}"
+			    
                         // Push Docker image to prod repo
                         withCredentials([usernamePassword(
                             credentialsId: 'DOCKER',  // Jenkins credentials ID
